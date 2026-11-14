@@ -220,7 +220,7 @@ export function paintDialFace(ctx, size, colors, dial) {
   ctx.fillStyle = colors.text;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.font = '900 ${Math.round((outer - inner) * 0.6)}px "Arial Narrow", Arial, sans-serif';
+  ctx.font = `900 ${Math.round((outer - inner) * 0.6)}px "Arial Narrow", Arial, sans-serif`;
   for (let k = 0; k < dial.sides; k++) {
     const angle = dial.phase + k * dial.step;     // clockwise from straight up
     ctx.save();
@@ -247,7 +247,7 @@ export function paintLegend(ctx, size, text, color) {
   ctx.fillStyle = color;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.font = '900 ${Math.round(size * 0.8)}px Arial, sans-serif';
+  ctx.font = `900 ${Math.round(size * 0.8)}px Arial, sans-serif`;
   ctx.fillText(text, size / 2, size * 0.54);
 }
 
@@ -259,7 +259,7 @@ export function paintLcd(ctx, width, height, text, colors, glow = colors.lcdOn) 
   ctx.shadowBlur = height * 0.12;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.font = 'bold ${Math.round(height * 0.62)}px Consolas, "Courier New", monospace';
+  ctx.font = `bold ${Math.round(height * 0.62)}px Consolas, "Courier New", monospace`;
   ctx.fillText(text, width / 2, height * 0.55);
 }
 
@@ -268,7 +268,7 @@ export function paintStencil(ctx, width, height, text, color) {
   ctx.fillStyle = color;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.font = '900 ${Math.round(height * 0.8)}px Impact, "Arial Black", sans-serif';
+  ctx.font = `900 ${Math.round(height * 0.8)}px Impact, "Arial Black", sans-serif`;
   ctx.fillText(text, width / 2, height * 0.54);
 }
 
@@ -278,7 +278,7 @@ export function paintMarker(ctx, width, height, text, color, random) {
   let size = Math.round(height * 0.36);
   let lines;
   for (;;) {
-    ctx.font = 'bold ${size}px ${HANDWRITING}';
+    ctx.font = `bold ${size}px ${HANDWRITING}`;
     lines = wrapText(ctx, text, width * 0.94);
     if (lines.length * size * 1.15 <= height * 0.92 || size <= 8) break;
     size = Math.floor(size * 0.9);
@@ -337,7 +337,7 @@ function wrapText(ctx, text, maxWidth) {
   const lines = [];
   let line = '';
   for (const word of text.split(' ')) {
-    const candidate = line ? '${line} ${word}' : word;
+    const candidate = line ? `${line} ${word}` : word;
     if (ctx.measureText(candidate).width > maxWidth && line) {
       lines.push(line);
       line = word;
@@ -351,5 +351,5 @@ function wrapText(ctx, text, maxWidth) {
 
 export function withAlpha(hex, alpha) {
   const n = parseInt(hex.slice(1), 16);
-  return 'rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${alpha})';
+  return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${alpha})`;
 }

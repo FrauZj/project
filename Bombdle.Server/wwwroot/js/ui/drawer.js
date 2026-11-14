@@ -19,7 +19,7 @@ export class EdgeDrawer {
     window.addEventListener('pointermove', (e) => this.followMouse(e), { capture: true });
 
     this.strip = document.createElement('div');
-    this.strip.className = 'edge-strip edge-${edge}';
+    this.strip.className = `edge-strip edge-${edge}`;
     element.after(this.strip);
     const inward = INWARD[edge];
     onSwipe(this.strip, inward, () => this.open('pinned'));

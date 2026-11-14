@@ -26,7 +26,7 @@ export class SafeModule extends Module {
     this.parts = kit.parts.safe;
     this.colors = kit.palette.keypad;
     if (this.parts.sides !== this.dialSize) {
-      console.warn('The safe model has ${this.parts.sides} sides, but the dial has ${this.dialSize} numbers.');
+      console.warn(`The safe model has ${this.parts.sides} sides, but the dial has ${this.dialSize} numbers.`);
     }
 
     this.number = this.dialSize;
@@ -72,8 +72,8 @@ export class SafeModule extends Module {
   readoutText(now) {
     if (this.open) return 'OPEN';
     if (now < this.errorUntil) return 'ERR';
-    if (this.phase === 'right') return '${this.left}-${this.right}';
-    if (this.phase === 'left') return 'L ${this.left}';
+    if (this.phase === 'right') return `${this.left}-${this.right}`;
+    if (this.phase === 'left') return `L ${this.left}`;
     return String(this.number);
   }
 
@@ -113,7 +113,7 @@ export class SafeModule extends Module {
 
   attempt() {
     if (this.open || this.phase !== 'right') return null;
-    return '${COMBO_PREFIX}${this.left}-${this.right}';
+    return `${COMBO_PREFIX}${this.left}-${this.right}`;
   }
 
   onPress(part, tool, ray) {
@@ -187,9 +187,9 @@ export class SafeModule extends Module {
   }
 
   describe(target, tool) {
-    const safe = this.label ? 'safe ${this.label}' : 'the safe';
-    if (tool !== 'none' || !target.startsWith(COMBO_PREFIX)) return '${toolName(tool)} on ${safe}';
-    return 'combination ${target.slice(COMBO_PREFIX.length)} on ${safe}';
+    const safe = this.label ? `safe ${this.label}` : 'the safe';
+    if (tool !== 'none' || !target.startsWith(COMBO_PREFIX)) return `${toolName(tool)} on ${safe}`;
+    return `combination ${target.slice(COMBO_PREFIX.length)} on ${safe}`;
   }
 }
 

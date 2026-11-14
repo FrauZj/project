@@ -99,7 +99,7 @@ export class SecretPanelModule extends Module {
   }
 
   describe(target, tool) {
-    return "${toolName(tool)} on the ${this.face.name} ${this.face.kind === 'side' ? 'panel' : 'cover'}";
+    return `${toolName(tool)} on the ${this.face.name} ${this.face.kind === 'side' ? 'panel' : 'cover'}`;
   }
 }
 

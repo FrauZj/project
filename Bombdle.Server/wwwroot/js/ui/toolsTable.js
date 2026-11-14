@@ -102,8 +102,8 @@ export class ToolsTable {
       const slot = document.createElement('button');
       slot.type = 'button';
       slot.className = 'slot';
-      slot.innerHTML = '<span class="slot-icon">${toolIcon(tool.id)}</span>' +
-        '<span class="slot-label"><kbd>${tool.key.toUpperCase()}</kbd> ${tool.label}</span>';
+      slot.innerHTML = `<span class="slot-icon">${toolIcon(tool.id)}</span>` +
+        `<span class="slot-label"><kbd>${tool.key.toUpperCase()}</kbd> ${tool.label}</span>`;
       slot.addEventListener('click', () => this.select(tool.id));
       tray.append(slot);
       this.slots.set(tool.id, slot);
@@ -135,7 +135,7 @@ export class ToolsTable {
       slot.classList.toggle('missing', missing);
       slot.classList.toggle('selected', id === this.tool);
       slot.setAttribute('aria-pressed', String(id === this.tool));
-      slot.title = missing ? "${label}: not on the table. Maybe it's hidden somewhere..." : "${label} (key ${key.toUpperCase()})";
+      slot.title = missing ? `${label}: not on the table. Maybe it's hidden somewhere...` : `${label} (key ${key.toUpperCase()})`;
     }
   }
 }
@@ -151,7 +151,7 @@ export class ToolCursor {
     canvas.addEventListener('pointermove', (e) => {
       this.overCanvas = e.pointerType === 'mouse';
       if (this.overCanvas) {
-        this.element.style.transform = 'translate(${e.clientX + CURSOR_OFFSET[0]}px, ${e.clientY + CURSOR_OFFSET[1]}px)';
+        this.element.style.transform = `translate(${e.clientX + CURSOR_OFFSET[0]}px, ${e.clientY + CURSOR_OFFSET[1]}px)`;
       }
       this.refresh();
     });

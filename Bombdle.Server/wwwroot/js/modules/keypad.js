@@ -132,8 +132,8 @@ export class KeypadModule extends Module {
   }
 
   describe(target, tool) {
-    const keypad = this.label ? 'keypad ${this.label}' : 'the keypad';
-    if (tool !== 'none' || !target.startsWith(CODE_PREFIX)) return '${toolName(tool)} on ${keypad}';
-    return 'code ${target.slice(CODE_PREFIX.length)} on ${keypad}';
+    const keypad = this.label ? `keypad ${this.label}` : 'the keypad';
+    if (tool !== 'none' || !target.startsWith(CODE_PREFIX)) return `${toolName(tool)} on ${keypad}`;
+    return `code ${target.slice(CODE_PREFIX.length)} on ${keypad}`;
   }
 }

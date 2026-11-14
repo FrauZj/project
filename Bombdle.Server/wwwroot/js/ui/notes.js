@@ -53,7 +53,7 @@ export function paperElement(title, lines, seed, kind = '') {
   sheet.append(heading, list);
 
   const paper = document.createElement('div');
-  paper.className = kind ? 'paper ${kind}' : 'paper';
+  paper.className = kind ? `paper ${kind}` : 'paper';
   paper.append(sheet);
   return paper;
 }
@@ -63,7 +63,7 @@ function tornEdge(random) {
   const top = [];
   for (let i = 0; i <= TEAR_POINTS; i++) {
     const depth = 2 + random() * (TEAR_DEPTH - 2);
-    top.push('${((100 * i) / TEAR_POINTS).toFixed(2)}% ${depth.toFixed(1)}px');
+    top.push(`${((100 * i) / TEAR_POINTS).toFixed(2)}% ${depth.toFixed(1)}px`);
   }
-  return 'polygon(${top.join(', ')}, 100% 100%, 0% 100%)';
+  return `polygon(${top.join(', ')}, 100% 100%, 0% 100%)`;
 }

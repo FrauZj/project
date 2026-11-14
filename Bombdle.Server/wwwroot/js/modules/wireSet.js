@@ -106,9 +106,9 @@ export class WireSetModule extends Module {
 
   describe(target, tool) {
     const wire = this.wires.find((w) => w.position === positionOf(target));
-    const panel = this.label ? 'wires ${this.label}' : 'the wire panel';
-    const what = "the ${wire?.color ?? 'unknown'} wire (${panel})";
-    return tool === 'wireCutters' ? 'cut ${what}' : '${toolName(tool)} on ${what}';
+    const panel = this.label ? `wires ${this.label}` : 'the wire panel';
+    const what = `the ${wire?.color ?? 'unknown'} wire (${panel})`;
+    return tool === 'wireCutters' ? `cut ${what}` : `${toolName(tool)} on ${what}`;
   }
 }
 
