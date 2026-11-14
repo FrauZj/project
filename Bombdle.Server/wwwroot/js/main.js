@@ -36,7 +36,7 @@ const REQUESTED_DATE = new URLSearchParams(location.search).get('date');
 //DOM helpers
 function setStatus(state, text) {
   const el = document.getElementById('status');
-  el.className = 'status ${state}';
+  el.className = `status ${state}`;
   el.textContent = text;
 }
 
@@ -68,22 +68,22 @@ function waitUntil(t) {
 
 function moduleName(module) {
   const name = MODULE_NAMES[module.type] ?? module.type;
-  return module.label ? '${name} ${module.label}' : name;
+  return module.label ? `${name} ${module.label}` : name;
 }
 
 function countOf(n, noun) {
-  return "${n} ${noun}${n === 1 ? '' : 's'}";
+  return `${n} ${noun}${n === 1 ? '' : 's'}`;
 }
 
 /** "a", "a and b", "a, b and c". */
 function listOf(items) {
-  return items.length < 2 ? items.join('') : '${items.slice(0, -1).join(', ')} and ${items.at(-1)}';
+  return items.length < 2 ? items.join('') : `${items.slice(0, -1).join(', ')} and ${items.at(-1)}`;
 }
 
 /** 102 345 ms -> "1:42.3". */
 function clockOf(ms) {
   const tenths = Math.floor(ms / 100);
-  return "${Math.floor(tenths / 600)}:${String(Math.floor(tenths / 10) % 60).padStart(2, '0')}.${tenths % 10}";
+  return `${Math.floor(tenths / 600)}:${String(Math.floor(tenths / 10) % 60).padStart(2, '0')}.${tenths % 10}`;
 }
 
 shieldFromSketch(document.getElementById('ui'));
@@ -123,7 +123,7 @@ new p5((p) => {
     try {
       look = new Ps1Look(p);
     } catch (err) {
-      console.warn('PS1 look off: ${err.message}');
+      console.warn(`PS1 look off: ${err.message}`);
     }
 
     listenForPointer(p.canvas);
@@ -158,7 +158,7 @@ new p5((p) => {
     } catch (err) {
       game = null;
       setStatus('error', 'failed to load puzzle');
-      showOverlay('Could not load the puzzle.\n${err.message}');
+      showOverlay(`Could not load the puzzle.\n${err.message}`);
     }
   };
 
@@ -270,7 +270,7 @@ new p5((p) => {
       if (judged.revealed.length > 0 || judged.found.length > 0 || judged.modules.length > 0) await openCoverSequence(judged);
       if (game.isOver) showOutcome();
     } catch (err) {
-      setStatus('error', 'server error: ${err.message}');
+      setStatus('error', `server error: ${err.message}`);
     }
   }
 
@@ -305,17 +305,17 @@ new p5((p) => {
   function showVerdict({ module, target, tool, verdict, revealed, found, modules }) {
     let what = module.describe(target, tool);
     const inside = [
-      ...modules.map((m) => 'a ${moduleName(m)}'),
+      ...modules.map((m) => `a ${moduleName(m)}`),
       ...revealed.map((panelId) => countOf(game.notes.get(panelId).length, 'note')),
-      ...found.map((t) => 'the ${toolName(t)}'),
+      ...found.map((t) => `the ${toolName(t)}`),
     ];
-    if (inside.length > 0) what += ': ${listOf(inside)} inside!';
+    if (inside.length > 0) what += `: ${listOf(inside)} inside!`;
 
-    if (game.outcome === 'exploded') setStatus('error', 'BOOM! ${what}');
-    else if (game.outcome === 'defused') setStatus('ready', 'DEFUSED! ${what}');
-    else if (verdict === 'ok') setStatus('ready', '✓ ${what}');
-    else if (verdict === 'strike') setStatus('error', '✗ strike: ${what}');
-    else setStatus('loading', 'no effect: ${what}');
+    if (game.outcome === 'exploded') setStatus('error', `BOOM! ${what}`);
+    else if (game.outcome === 'defused') setStatus('ready', `DEFUSED! ${what}`);
+    else if (verdict === 'ok') setStatus('ready', `✓ ${what}`);
+    else if (verdict === 'strike') setStatus('error', `✗ strike: ${what}`);
+    else setStatus('loading', `no effect: ${what}`);
     updateMeta();
   }
 
@@ -324,7 +324,7 @@ new p5((p) => {
     const found = [...bomb.modules.values()].filter((m) => m.type in MODULE_NAMES).length;
     const missing = ['screwdriver', 'wrench', 'wireCutters'].filter((t) => !game.tools.has(t)).map(toolName);
     document.getElementById('meta').textContent =
-      "${countOf(found, 'module')} found" + (missing.length ? " * ${missing.join(', ')} missing" : '');
+      `${countOf(found, 'module')} found` + (missing.length ? ` * ${missing.join(', ')} missing` : '');
   }
 
   // Defused or exploded screens
@@ -334,7 +334,7 @@ new p5((p) => {
     title.textContent = defused ? 'Defused!' : 'BOOM!';
     title.className = defused ? 'won' : 'lost';
     document.getElementById('outcome-text').textContent =
-      "${defused ? 'Time' : 'Lasted'} ${clockOf(game.elapsedMs)} * ${countOf(game.strikes, 'strike')} * ${countOf(game.actionCount, 'action')}";
+      `${defused ? 'Time' : 'Lasted'} ${clockOf(game.elapsedMs)} * ${countOf(game.strikes, 'strike')} * ${countOf(game.actionCount, 'action')}`;
     document.getElementById('outcome').classList.remove('hidden');
   }
 
@@ -356,7 +356,7 @@ new p5((p) => {
   }
 
   function coverTitle(cover) {
-    return "Inside the ${cover.face.name} ${cover.face.kind === 'side' ? 'panel' : 'cover'}";
+    return `Inside the ${cover.face.name} ${cover.face.kind === 'side' ? 'panel' : 'cover'}`;
   }
 
   // keybinds

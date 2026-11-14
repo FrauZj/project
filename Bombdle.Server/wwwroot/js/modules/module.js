@@ -62,7 +62,7 @@ export class Module {
   apply(target, verdict) {}
 
   describe(target, tool) {
-    return '${this.type} ${target}';
+    return `${this.type} ${target}`;
   }
 }
 

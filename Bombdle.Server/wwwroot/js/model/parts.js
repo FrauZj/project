@@ -41,7 +41,7 @@ export const GROUPS = {
 export function buildParts(groups) {
   const find = (key) => {
     const meshes = [...groups].filter(([name]) => GROUPS[key](name)).map(([, mesh]) => mesh);
-    if (meshes.length === 0) throw new Error('The 3D model has no "${key}" part (see docs/MODELS.md §2).');
+    if (meshes.length === 0) throw new Error(`The 3D model has no "${key}" part (see docs/MODELS.md §2).`);
     return meshes;
   };
 
