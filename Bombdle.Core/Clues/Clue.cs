@@ -24,11 +24,9 @@ public abstract record Clue<TCandidate> : Clue
 {
     public virtual ClueTier Tier => ClueTier.Deductive;
 
-    /// <summary>The module's letter when the bomb has two modules of its kind</summary>
-    public string? Label { get; init; }
-    protected abstract string Kind { get; }
     protected abstract string Statement { get; }
-    public sealed override string Text => Label is null ? $"{Kind}: {Statement}" : $"{Kind} {Label}: {Statement}";
+
+    public sealed override string Text => char.ToUpperInvariant(Statement[0]) + Statement[1..];
     public abstract bool Holds(TCandidate candidate);
 }
 

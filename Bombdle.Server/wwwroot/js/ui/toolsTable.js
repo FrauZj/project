@@ -19,22 +19,6 @@ const ICONS = {
     </g>
   </svg>`,
 
-  screwdriver: `<svg viewBox="0 0 64 64" aria-hidden="true">
-    <g transform="rotate(-45 32 32)">
-      <rect class="body" x="4" y="24" width="26" height="16" rx="5" fill="#e0b021"/>
-      <rect class="body" x="29" y="27" width="5" height="10" rx="1" fill="#9aa1a9"/>
-      <rect class="body" x="33" y="30" width="22" height="4" fill="#c9cdd3"/>
-      <path class="body" d="M54.5 29.5 60 30.8v2.4l-5.5 1.3z" fill="#b5bac1"/>
-      <g class="shade">
-        <rect x="7" y="26" width="20" height="3" rx="1.5" fill="#f7da7e"/>
-        <rect x="7" y="35.5" width="20" height="2.5" rx="1.2" fill="#a37d12"/>
-        <path d="M13 29.5v5M18 29.5v5M23 29.5v5" stroke="#b08714" stroke-width="1.5" stroke-linecap="round"/>
-        <rect x="33" y="30" width="22" height="1.2" fill="#f4f5f7"/>
-        <rect x="33" y="33" width="22" height="1" fill="#8a9099"/>
-      </g>
-    </g>
-  </svg>`,
-
   wrench: `<svg viewBox="0 0 64 64" aria-hidden="true">
     <g transform="rotate(-45 32 32)" fill="#bfc4ca">
       <rect class="body" x="14" y="28.5" width="32" height="7" rx="3.5"/>

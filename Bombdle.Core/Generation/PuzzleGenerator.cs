@@ -106,9 +106,9 @@ public sealed class PuzzleGenerator(Shape shape)
                 WireSetModule set => PlanCards(set.Id, CandidateSpace.WireMasks(set.Wires.Count),
                     ClueFactories.TrueWireClues(set, wireMasks[set.Id]), rng),
                 KeypadModule keypad => PlanCards(keypad.Id, CandidateSpace.KeypadCodes(keypad.CodeLength),
-                    ClueFactories.TrueKeypadClues(codes[keypad.Id], keypad.Label), rng),
+                    ClueFactories.TrueKeypadClues(codes[keypad.Id]), rng),
                 SafeModule safe => PlanCards(safe.Id, CandidateSpace.SafeCombos(safe.DialSize),
-                    ClueFactories.TrueSafeClues(combos[safe.Id], safe.Label), rng),
+                    ClueFactories.TrueSafeClues(combos[safe.Id]), rng),
                 _ => throw new NotSupportedException($"No clues for module type {module.GetType().Name}."),
             });
         }

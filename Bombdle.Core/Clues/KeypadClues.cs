@@ -2,8 +2,6 @@ namespace Bombdle.Core.Clues;
 
 public abstract record KeypadClue : Clue<string>
 {
-    protected sealed override string Kind => "Keypad";
-
     protected static string Ordinal(int position) => (position + 1) switch
     {
         1 => "1st", 2 => "2nd", 3 => "3rd", var n => $"{n}th",

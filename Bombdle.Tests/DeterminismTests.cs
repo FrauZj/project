@@ -31,6 +31,6 @@ public class DeterminismTests
         Assert.Equal(Snapshot, hash);
     }
 
-    // The M4c generator. Re-pinned on 2026-11-09
-    private const string Snapshot = "ED2C92F0BB1BDBD4E91DA581F21B935EFCCCB02F863FD4254CB072BEC355D5CE";
+    // The M4c generator. Re-pinned on 2026-11-14
+    private const string Snapshot = "5827455E394C9447CEB706948BE7C0D80F5EEE29CD038C2E4FE18E24ADD38629";
 }
