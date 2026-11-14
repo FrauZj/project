@@ -1,7 +1,8 @@
-export const LINES = 240;
+export const LINES = 360;
 
-const GRAIN = 0.05;
-const VIGNETTE = 0.22;
+const COLOUR_LEVELS = 63;
+const GRAIN = 0.02;
+const VIGNETTE = 0.12;
 
 // Vertex wobble
 
@@ -34,7 +35,7 @@ void main() {
   vec2 cell = floor(vTexCoord * uCells);
   vec3 color = texture2D(tex0, (cell + 0.5) / uCells).rgb;
 
-  color = floor(color * 31.0 + bayer4(gl_FragCoord.xy)) / 31.0;
+  color = floor(color * ${COLOUR_LEVELS.toFixed(1)} + bayer4(gl_FragCoord.xy)) / ${COLOUR_LEVELS.toFixed(1)};
 
   vec2 fromCentre = vTexCoord - 0.5;
   color *= 1.0 - ${VIGNETTE.toFixed(3)} * 2.0 * dot(fromCentre, fromCentre);
@@ -43,7 +44,7 @@ void main() {
   gl_FragColor = vec4(clamp(color, 0.0, 1.0), 1.0);
 }`;
 
-export class Ps1Look {
+export class RetroLook {
   constructor(p) {
     this.p = p;
     this.enabled = true;

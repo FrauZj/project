@@ -58,7 +58,7 @@ public class ReplayTests
     {
         var bay = _bomb.CoverOf(Keypad.Id)!;
 
-        var result = ReplayMapper.Replay(_bomb, [PlayerAction.UnfastenPanel(1, bay.Id, Tool.Screwdriver)]);
+        var result = ReplayMapper.Replay(_bomb, [PlayerAction.UnfastenPanel(1, bay.Id, Tool.None)]);
 
         Assert.Equal([ActionResult.Ignored], result.Results);
         Assert.Empty(result.RevealedModules);

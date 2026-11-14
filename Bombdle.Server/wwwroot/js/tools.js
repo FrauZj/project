@@ -1,14 +1,11 @@
-/**
- * tools list 
- */
+//tools list
 export const TOOLS = [
-  { id: 'none', label: 'Hand', key: 'h' },
-  { id: 'screwdriver', label: 'Screwdriver', key: 's' },
-  { id: 'wrench', label: 'Wrench', key: 'w' },
-  { id: 'wireCutters', label: 'Wire cutters', key: 'c' },
+  { id: 'none', label: 'Hand', key: '1' },
+  { id: 'wrench', label: 'Wrench', key: '2' },
+  { id: 'wireCutters', label: 'Wire cutters', key: '3' },
 ];
 
-export const FASTENER_TOOL = { bolt: 'wrench', screw: 'screwdriver' };
+export const FASTENER_TOOL = { bolt: 'wrench' };
 
 export function toolName(toolId) {
   return (TOOLS.find((t) => t.id === toolId)?.label ?? toolId).toLowerCase();

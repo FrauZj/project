@@ -59,7 +59,7 @@ public class DtoLeakTests
         string json = PuzzleMapper.ToJson(bomb);
 
         Assert.DoesNotContain("wireCutters", json);
-        Assert.Contains("\"startingTools\":[\"screwdriver\",\"wrench\"]", json);
+        Assert.Contains("\"startingTools\":[\"wrench\"]", json);
     }
 
     [Fact]

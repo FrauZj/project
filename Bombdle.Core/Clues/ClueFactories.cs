@@ -11,16 +11,7 @@ public static class ClueFactories
     /// <summary>Thresholds for "the left number is greater than 10 / 20 or less" clues.</summary>
     private static readonly int[] SafeThresholds = [10, 20];
 
-    public static IEnumerable<WireClue> TrueWireClues(WireSetModule set, int cutMask) =>
-        WireClues(set, cutMask).Select(clue => clue with { Label = set.Label });
-
-    public static IEnumerable<KeypadClue> TrueKeypadClues(string code, string? label = null) =>
-        KeypadClues(code).Select(clue => clue with { Label = label });
-
-    public static IEnumerable<SafeClue> TrueSafeClues(SafeCombo combo, string? label = null) =>
-        SafeClues(combo).Select(clue => clue with { Label = label });
-
-    private static IEnumerable<WireClue> WireClues(WireSetModule set, int cutMask)
+    public static IEnumerable<WireClue> TrueWireClues(WireSetModule set, int cutMask)
     {
         bool IsCut(Wire w) => (cutMask & (1 << w.Position)) != 0;
 
@@ -43,7 +34,7 @@ public static class ClueFactories
         }
     }
 
-    private static IEnumerable<KeypadClue> KeypadClues(string code)
+    public static IEnumerable<KeypadClue> TrueKeypadClues(string code)
     {
         for (int i = 0; i < code.Length; i++)
         {
@@ -66,7 +57,7 @@ public static class ClueFactories
         yield return new KeyEvenCount(code.Count(c => (c - '0') % 2 == 0));
     }
 
-    private static IEnumerable<SafeClue> SafeClues(SafeCombo combo)
+    public static IEnumerable<SafeClue> TrueSafeClues(SafeCombo combo)
     {
         foreach (var turn in new[] { DialTurn.Left, DialTurn.Right })
         {

@@ -1,7 +1,7 @@
 import { quadGeometry } from './geometry.js';
 import { bakeTexture, paintLegend, paintStencil, paintMarker, paintLcd, seededRandom } from './textures.js';
 
-const LEGEND_PX = 64;
+const LEGEND_PX = 128;
 const STENCIL_PX = 128;
 const MARKER_HEIGHT_PX = 256;
 const LCD_PX = [256, 80];

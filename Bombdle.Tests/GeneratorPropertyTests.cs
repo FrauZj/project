@@ -164,10 +164,7 @@ public class GeneratorPropertyTests(ITestOutputHelper output)
         Assert.Equal(scribbles.Count, scribbles.Select(s => s.FaceId).Distinct().Count());
 
         foreach (var clue in modules.OfType<ClueModule>().Where(c => c.TargetModuleId is not null))
-        {
-            var target = Assert.IsAssignableFrom<PuzzleModule>(modules.Single(m => m.Id == clue.TargetModuleId));
-            Assert.StartsWith(NameOf(target) + ": ", clue.Clue.Text);
-        }
+            Assert.IsAssignableFrom<PuzzleModule>(modules.Single(m => m.Id == clue.TargetModuleId));
     }
 
     private static bool IsNote(Bomb bomb, int id) => bomb.Modules.Single(m => m.Id == id) is ClueModule;
@@ -181,7 +178,4 @@ public class GeneratorPropertyTests(ITestOutputHelper output)
         KeypadModule => "Keypad",
         _ => "Safe",
     };
-
-    private static string NameOf(PuzzleModule module) =>
-        module.Label is null ? KindOf(module) : $"{KindOf(module)} {module.Label}";
 }

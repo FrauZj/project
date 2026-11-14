@@ -3,13 +3,8 @@ namespace Bombdle.Core.Clues;
 using System.Numerics;
 using Bombdle.Core.Domain.Modules;
 
-/// Every sentence starts with "Wires",
-/// so it is clear which panel it means.
-
 public abstract record WireClue : Clue<int>
 {
-    protected sealed override string Kind => "Wires";
-
     protected static bool IsCut(int mask, Wire wire) => (mask & (1 << wire.Position)) != 0;
 
     protected static string Ordinal(int position) => (position + 1) switch

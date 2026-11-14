@@ -116,14 +116,6 @@ export class KeypadModule extends Module {
     return null;
   }
 
-  onKey(key) {
-    if (this.solved) return false;
-    if (/^[0-9]$/.test(key)) return this.press(key) ?? true;
-    if (key === 'enter') return this.press('E') ?? true;
-    if (key === 'backspace') return this.press('C') ?? true;
-    return false;
-  }
-
   apply(target, verdict) {
     if (!target.startsWith(CODE_PREFIX)) return;
     if (verdict === 'ok') this.solved = true;

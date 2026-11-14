@@ -14,7 +14,7 @@ import { EdgeDrawer, shieldFromSketch } from './ui/drawer.js';
 import { ToolsTable, ToolCursor, toolIcon } from './ui/toolsTable.js';
 import { Notes, paperElement } from './ui/notes.js';
 import { PaperReveal } from './ui/reveal.js';
-import { Ps1Look } from './look/ps1.js';
+import { RetroLook } from './look/retro.js';
 
 // World units per bomb unit
 const WORLD_SCALE = 360;
@@ -100,7 +100,7 @@ new p5((p) => {
   let revealing = false;   // a panel is coming off
   let press = null;        // the press in progress
   let zone = null;         
-  let look = null;         // Ps1Look
+  let look = null;         // RetroLook
 
   const toolsDrawer = new EdgeDrawer(document.getElementById('tools'), 'bottom');
   const notesDrawer = new EdgeDrawer(document.getElementById('notes'), 'right');
@@ -119,11 +119,11 @@ new p5((p) => {
     camera.perspective(FOV_Y, p.width / p.height, NEAR, FAR);
     p.setCamera(camera);
 
-    // ps1 style graphics selection
+    // retro look (pixelation + dithering)
     try {
-      look = new Ps1Look(p);
+      look = new RetroLook(p);
     } catch (err) {
-      console.warn(`PS1 look off: ${err.message}`);
+      console.warn(`Retro look off: ${err.message}`);
     }
 
     listenForPointer(p.canvas);
@@ -322,7 +322,7 @@ new p5((p) => {
   function updateMeta() {
     [...document.getElementById('lamps').children].forEach((lamp, i) => lamp.classList.toggle('lit', i < game.strikes));
     const found = [...bomb.modules.values()].filter((m) => m.type in MODULE_NAMES).length;
-    const missing = ['screwdriver', 'wrench', 'wireCutters'].filter((t) => !game.tools.has(t)).map(toolName);
+    const missing = ['wrench', 'wireCutters'].filter((t) => !game.tools.has(t)).map(toolName);
     document.getElementById('meta').textContent =
       `${countOf(found, 'module')} found` + (missing.length ? ` * ${missing.join(', ')} missing` : '');
   }
@@ -334,7 +334,7 @@ new p5((p) => {
     title.textContent = defused ? 'Defused!' : 'BOOM!';
     title.className = defused ? 'won' : 'lost';
     document.getElementById('outcome-text').textContent =
-      `${defused ? 'Time' : 'Lasted'} ${clockOf(game.elapsedMs)} * ${countOf(game.strikes, 'strike')} * ${countOf(game.actionCount, 'action')}`;
+      `${defused ? 'Time' : 'Lasted'} ${clockOf(game.elapsedMs)} \n ${countOf(game.strikes, 'strike')} \n ${countOf(game.actionCount, 'action')}`;
     document.getElementById('outcome').classList.remove('hidden');
   }
 
@@ -387,7 +387,7 @@ new p5((p) => {
     }
     if (key === 'g') {
       look?.toggle(); // TODO: remove switch later 
-      return;         // the PS1 look off and on, to compare with the plain render
+      return;         // the retro look off and on, to compare with the plain render
     }
 
     const used = zone && !revealing && !game.isOver ? zone.onKey(key) : false;

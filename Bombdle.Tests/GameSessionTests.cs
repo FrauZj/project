@@ -99,12 +99,12 @@ public class GameSessionTests
     }
 
     [Fact]
-    public void Apply_ScrewdriverOnToughBolts_IsIgnored()
+    public void Apply_BareHandOnToughBolts_IsIgnored()
     {
         var session = new GameSession(_bomb);
         var panel = Panels.First();
 
-        Assert.Equal(ActionResult.Ignored, session.Apply(PlayerAction.UnfastenPanel(1, panel.Id, Tool.Screwdriver)));
+        Assert.Equal(ActionResult.Ignored, session.Apply(PlayerAction.UnfastenPanel(1, panel.Id, Tool.None)));
         Assert.False(session.IsPanelRemoved(panel.Id));
         Assert.Equal(0, session.Strikes);
         Assert.Equal(0, session.ActionCount);

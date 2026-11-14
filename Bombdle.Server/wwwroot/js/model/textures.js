@@ -249,6 +249,10 @@ export function paintLegend(ctx, size, text, color) {
   ctx.textBaseline = 'middle';
   ctx.font = `900 ${Math.round(size * 0.8)}px Arial, sans-serif`;
   ctx.fillText(text, size / 2, size * 0.54);
+
+  const image = ctx.getImageData(0, 0, size, size);
+  for (let i = 3; i < image.data.length; i += 4) image.data[i] = image.data[i] >= 128 ? 255 : 0;
+  ctx.putImageData(image, 0, 0);
 }
 
 export function paintLcd(ctx, width, height, text, colors, glow = colors.lcdOn) {

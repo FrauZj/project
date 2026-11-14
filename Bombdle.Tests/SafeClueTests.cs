@@ -47,7 +47,6 @@ public class SafeClueTests
         // Safe clues must never read like keypad clues ("digit", "code", "place").
         Assert.All(ClueFactories.TrueSafeClues(Combo), clue =>
         {
-            Assert.StartsWith("Safe: ", clue.Text);
             Assert.DoesNotContain("digit", clue.Text);
             Assert.DoesNotContain("code", clue.Text);
             Assert.DoesNotContain("place", clue.Text);

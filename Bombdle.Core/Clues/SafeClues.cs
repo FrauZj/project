@@ -10,8 +10,6 @@ public enum DialTurn
 
 public abstract record SafeClue : Clue<SafeCombo>
 {
-    protected sealed override string Kind => "Safe";
-
     protected static int NumberOf(SafeCombo combo, DialTurn turn) => turn == DialTurn.Left ? combo.Left : combo.Right;
 
     protected static string Name(DialTurn turn) => turn == DialTurn.Left ? "left" : "right";
