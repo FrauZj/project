@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bombdle</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2' y='2' width='12' height='12' rx='2' fill='%234b5233'/%3E%3Ccircle cx='8' cy='8' r='3' fill='%23ffd166'/%3E%3C/svg%3E" />
+
+  <link rel="stylesheet" href="/css/style.css" />
+
+  <script src="/lib/p5.min.js"></script>
+</head>
+<body>
+  <div id="ui">
+
+    <!-- HUD -->
+    <div id="hud">
+      <div class="hud-row">
+        <span class="brand">Bombdle</span>
+        <span id="lamps" class="lamps" aria-label="Strikes"></span>
+        <span id="puzzle-date" class="date">-</span>
+      </div>
+      <div id="status" class="status loading">connecting...</div>
+      <div id="meta" class="meta"></div>
+    </div>
+
+    <!-- js/ui/notes.js -->
+    <aside id="notes" class="drawer drawer-right" aria-label="Notes">
+      <button class="drawer-tab" type="button" title="Notes (key N)" aria-controls="notes-list">
+        <kbd>N</kbd> Notes <span id="notes-count" class="count">0</span>
+      </button>
+      <div id="notes-list" class="drawer-body notes-list"></div>
+    </aside>
+
+    <!-- js/ui/toolsTable.js -->
+    <section id="tools" class="drawer drawer-bottom" aria-label="Tools">
+      <button class="drawer-tab" type="button" title="Tools (key T)" aria-controls="tool-slots">
+        <span id="tools-tab-icon" class="tab-icon"></span><kbd>T</kbd> Tools
+      </button>
+      <div id="tool-slots" class="drawer-body tray" role="toolbar" aria-label="Tools"></div>
+    </section>
+
+    <!-- js/ui/toolsTable.js -->
+    <div id="tool-cursor" class="tool-cursor" aria-hidden="true"></div>
+
+    <!-- js/ui/reveal.js -->
+    <div id="reveal" class="reveal hidden" role="dialog" aria-label="A paper from inside the cover" tabindex="-1">
+      <div class="reveal-paper"></div>
+      <p class="reveal-hint">tap to file it in your notes</p>
+    </div>
+
+    <!-- defused or exploded-->
+    <div id="outcome" class="overlay hidden" role="dialog" aria-labelledby="outcome-title">
+      <div class="card">
+        <h2 id="outcome-title"></h2>
+        <p id="outcome-text"></p>
+        <button id="outcome-close" class="card-button" type="button">Look at the bomb</button>
+      </div>
+    </div>
+
+    <div id="overlay" class="overlay hidden">
+      <div class="card">
+        <h2>!</h2>
+        <p id="overlay-text"></p>
+        <button id="retry-btn" type="button">Retry</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>
